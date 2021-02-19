@@ -1,80 +1,19 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <link rel="stylesheet" href="styles/stylesheet.css">
 </head> 
 <body>
-    <h1>Rock, Paper, Scissors Project</h1>
-    <script>
+    <div>
+        <h1>Rock, Paper, Scissors</h1>
+        <h3>Best of Five</h3>
+    </div>
 
-        game();
-
-        function computerPlay() {        //return computer pick
-
-            let pick = "";
-            //get random number between 1 and 3
-            let randomNumber = Math.floor(Math.random() * (4 - 1) + 1);
-            
-            switch(randomNumber) {
-                case 1:
-                    pick = "rock";
-                    break;
-                case 2:
-                    pick = "paper";
-                    break;
-                case 3:
-                    pick = "scissors";
-                    break;
-                default:
-                    pick = "Error";
-            }
-            return pick;
-        }
-
-
-        function playRound(playerSelection, computerSelection) {        //determine who wins the round
-
-            if (playerSelection == "rock" && computerSelection == "scissors" || playerSelection == "paper" && computerSelection == "rock" || playerSelection == "scissors" && computerSelection == "paper") {
-                return "You win! " + playerSelection.charAt(0).toUpperCase() + playerSelection.slice(1) + " beats " + computerSelection + ".";
-            } else if(playerSelection == "rock" && computerSelection == "rock" || playerSelection == "paper" && computerSelection == "paper" || playerSelection == "scissors" && computerSelection == "scissors") {
-                return "Tie!";
-            } else {
-                return "You loose! " + computerSelection.charAt(0).toUpperCase() + computerSelection.slice(1) + " beats " + playerSelection + ".";
-            }
-        }
-
-        function game() {
-
-            let count = 0;      //track who is winning (negative - comp wins)
-            let i = 0;          //tracks number of games played
-
-            do {                //loop game five times
-
-                let playerSelection = prompt("Please enter a pick (rock, paper, or scissor: ");     //get user's pick
-                playerSelection = playerSelection.toLowerCase();                                    //control for case
-
-                let result = playRound(playerSelection, computerPlay());                            //play round
-                console.log(result);
-
-                if (result.indexOf("You win")) {            //test for who won and increase/decrease count
-                    count++;
-                } else if (result == "Tie!") {
-                    break;
-                } else {
-                    count--;
-                }
-
-                i++;                                        //increase game count
-
-            } while (i < 5);
-
-            if (count > 0) {                                //print winner
-                console.log("You win the game.");
-            } else if (count == 0) {
-                console.log("You tie!");
-            } else {
-                console.log("You loose the game.")
-            }
-        }
-    </script>
+    <div id="selection">
+        <button id="rock-button"><img src="images/rock.png" id="rock"></button>
+        <button id="paper-button"><img src="images/paper.png" id="paper"></button>
+        <button id="scissors-button"><img src="images/scissor.png" id="scissors"></button>
+    </div>
+    <script src="scripts.js"></script>
 </body>
 </html>
