@@ -1,4 +1,8 @@
-//game();
+
+let player = 0;      //track who is winning (negative - comp wins)
+let computer = 0;          //number of games played
+
+game();
 
 function computerPlay() {        //return computer pick
 
@@ -25,45 +29,37 @@ function computerPlay() {        //return computer pick
 //function compares picks and determines winner
 function playRound(playerSelection, computerSelection) {
 
+    const outcome = document.querySelector('#outcome');
+    const score = document.querySelector('#score');
+
     if (playerSelection == "rock" && computerSelection == "scissors" || playerSelection == "paper" && computerSelection == "rock" || playerSelection == "scissors" && computerSelection == "paper") {
-        return "You win! " + playerSelection.charAt(0).toUpperCase() + playerSelection.slice(1) + " beats " + computerSelection + ".";
+        player++;
+        outcome.textContent = "You win! " + playerSelection.charAt(0).toUpperCase() + playerSelection.slice(1) + " beats " + computerSelection + ".";
     } else if(playerSelection == "rock" && computerSelection == "rock" || playerSelection == "paper" && computerSelection == "paper" || playerSelection == "scissors" && computerSelection == "scissors") {
-        return "Tie!";
+        outcome.textContent = "Tie!";
     } else {
-        return "You loose! " + computerSelection.charAt(0).toUpperCase() + computerSelection.slice(1) + " beats " + playerSelection + ".";
+        computer++;
+        outcome.textContent = "You loose! " + computerSelection.charAt(0).toUpperCase() + computerSelection.slice(1) + " beats " + playerSelection + ".";
     }
+
+    score.textContent = "Player: " + player + "    " + "Computer: " + computer;
 }
 
 //function tracks number of games played and who is winning
 function game() {
 
-    let count = 0;      //track who is winning (negative - comp wins)
-    let i = 0;          //number of games played
+    const rockButton = document.querySelector('#rock-button');
+    const paperButton = document.querySelector('#paper-button');
+    const scissorsButton = document.querySelector('#scissors-button');
 
-    do {
-        let playerSelection = prompt("Please enter a pick (rock, paper, or scissor: ");
-        playerSelection = playerSelection.toLowerCase();
+    rockButton.addEventListener('click', () => {
+        playRound("rock", computerPlay());
+    });
+    paperButton.addEventListener('click', () => {
+        playRound("paper", computerPlay());
+    });
+    scissorsButton.addEventListener('click', () => {
+        playRound("scissors", computerPlay());
+    });
 
-        let result = playRound(playerSelection, computerPlay());
-        console.log(result);
-
-        if (result.indexOf("You win") >= 0) {
-            count++;
-        }
-        else if (result == "Tie!") {
-        }
-        else {
-            count--;
-        }
-        console.log(count);
-        i++;   
-
-    } while (i < 5);
-
-    if (count > 0)
-        console.log("You win the game.");
-    else if (count == 0)
-        console.log("You tie!");
-    else
-        console.log("You loose the game.")
 }

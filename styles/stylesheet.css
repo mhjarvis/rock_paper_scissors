@@ -16,13 +16,31 @@ h3 {
     text-align: center;
 }
 button {
-    background-color: rgb(22, 30, 77);
+    background-color: rgb(28, 70, 146);
     border: 1px solid white;
     border-radius: 50%;
     height: 200px;
     width: 200px;
     margin: 30px 20px 0 20px;
 }
+button:hover {
+    background-color: rgb(31, 132, 214);
+}
 #rock, #paper, #scissors {
     max-height: 120px;
+}
+#tracker {
+    color: white;
+}
+#outcome {
+    color: white;
+    text-align: center;
+    font-size: 2em;
+    margin-top: 50px;
+}
+#score {
+    color: white;
+    text-align: center;
+    font-size: 1.5em;
+    margin: 20px;
 }
